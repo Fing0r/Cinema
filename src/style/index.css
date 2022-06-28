@@ -1,0 +1,14 @@
+:root {
+    --color-blue: #027bff;
+    --color-blue-disabled: #5aaaff;
+    --color-blue-hover: #1565c0;
+    --color-green: #29a745;
+    --color-green-hover: #043f15;
+    --color-grey: #c5c5c5;
+    --color-dark: #203338;
+    --color-dark-hover: #486f7c;
+
+    --transition: 0.3s;
+
+    --radius-5: 5px;
+}

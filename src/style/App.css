@@ -1,0 +1,144 @@
+html {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  line-height: calc(20 / 16);
+  color: #000000;
+  font-size: 20px;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+ul,
+ol {
+  padding: 0;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  border: none;
+  font: inherit;
+}
+
+input::placeholder {
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button {
+  padding: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.container {
+    max-width: 1170px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.checkbox {
+    position: relative;
+    min-width: 21px;
+    height: 21px;
+    display: block;
+    margin-right: 12px;
+}
+
+.checkbox__field {
+    appearance: none;
+    position: absolute;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    clip: rect(0 0 0 0);
+}
+
+.checkbox__content {
+    cursor: pointer;
+}
+
+.checkbox__content::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-20%);
+    width: 16px;
+    height: 16px;
+    border-radius: var(--radius-5);
+    border: 1px solid var(--color-grey);
+    transition: opacity var(--transition) ease-in-out;
+}
+
+.checkbox__content::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-20%);
+    opacity: 0;
+    background-color: #C4C4C4;
+    width: 15px;
+    height: 15px;
+    border-radius: var(--radius-5);
+
+}
+
+.checkbox__field:checked+.checkbox__content::after {
+    opacity: 1;
+}
+
+.checkbox__field:disabled+.checkbox__content {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.checkbox__text {
+    user-select: none;
+    padding-left: 25px;
+    cursor: pointer;
+    font-size: 14px;
+}
