@@ -1,11 +1,11 @@
 import { FC } from "react";
 import CardFilm from "./Card/Card";
 import useTypedSelector from "@/hooks/redux";
-import useFiltered from "@/hooks/useFiltered";
 import { getPositionItems } from "@/utils/utils";
+import { selectFilmsBySort } from "@/store/selectors";
 
 const CatalogCinema: FC = () => {
-    const filteredFilms = useFiltered();
+    const filteredFilms = useTypedSelector(selectFilmsBySort);
 
     const page = useTypedSelector(({ filters }) => filters.page);
     if (!filteredFilms.length) return null;

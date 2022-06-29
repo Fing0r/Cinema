@@ -3,10 +3,10 @@ import { useDispatch } from "react-redux";
 import Button from "@/UI/Button";
 import useTypedSelector from "@/hooks/redux";
 import { setCurrentPage } from "@/store/actions/filtersActions";
-import useFiltered from "@/hooks/useFiltered";
+import { selectFilmsBySort } from "@/store/selectors";
 
 const PaginationFilms: FC = () => {
-    const filteredFilms = useFiltered();
+    const filteredFilms = useTypedSelector(selectFilmsBySort);
     const page = useTypedSelector(({ filters }) => filters.page);
     const dispatch = useDispatch();
 

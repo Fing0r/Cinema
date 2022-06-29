@@ -5,6 +5,8 @@ import useTypedSelector from "@/hooks/redux";
 import { setAuth } from "@/store/actions/authActions";
 import { setActiveLoginModal } from "@/store/actions/modalActions";
 import { updateDataFromStorage } from "@/utils/utils";
+import { setFilteredByUserChoice } from "@/store/actions/userChoiceActions";
+import { DEFAULT_FILTERS } from "@/settings/config";
 
 const Header: FC = () => {
     const { auth } = useTypedSelector(({ auth }) => auth);
@@ -18,6 +20,7 @@ const Header: FC = () => {
     const handleClick = () => {
         if (auth) {
             dispatch(setAuth(false));
+            dispatch(setFilteredByUserChoice(DEFAULT_FILTERS.USER_CHOICE));
         } else {
             dispatch(setActiveLoginModal());
         }
