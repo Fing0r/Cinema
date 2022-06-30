@@ -1,5 +1,6 @@
 import React, { FC, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
 import LoginModal from "@/UI/Modal";
 import useTypedSelector from "@/hooks/redux";
 import { setAuth } from "@/store/actions/authActions";
@@ -33,9 +34,9 @@ const Header: FC = () => {
                     <nav className='header__nav nav'>
                         <ul className='nav__list'>
                             <li className='nav__item'>
-                                <a href='/' className='nav__link'>
+                                <NavLink to='/' className='nav__link'>
                                     Home
-                                </a>
+                                </NavLink>
                             </li>
                         </ul>
                     </nav>

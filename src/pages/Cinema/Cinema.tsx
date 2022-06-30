@@ -6,7 +6,7 @@ import Container from "@/pages/Cinema/component/Films/Container";
 const Cinema: FC = () => {
     return (
         <div style={{ position: "relative" }}>
-            <Header />
+            {/* <Header /> */}
             <main>
                 <Container />
             </main>

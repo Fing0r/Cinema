@@ -1,5 +1,6 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import useTypedSelector from "@/hooks/redux";
 import { setActiveLoginModal } from "@/store/actions/modalActions";
 import { toggleFavoriteFilm, toggleLaterFilm } from "@/store/actions/userChoiceActions";
@@ -48,9 +49,9 @@ const CardFilm: FC<ICardFilm> = ({ poster_path: img, vote_average: rating, title
 
     return (
         <article className='catalog__card card-film'>
-            <a href='/' className='card-film__img'>
+            <Link to={`film/${id}`} className='card-film__img'>
                 <img src={`https://image.tmdb.org/t/p/w300/${img}`} alt='' />
-            </a>
+            </Link>
             <div className='card-film__info'>
                 <div className='card-film__actions'>
                     <span className='card-film__rating'>
@@ -97,9 +98,9 @@ const CardFilm: FC<ICardFilm> = ({ poster_path: img, vote_average: rating, title
                 </div>
                 <h3 className='card-film__title'>{title}</h3>
                 <footer className='card-film__footer'>
-                    <a href='/' className='card-film__more'>
+                    <Link to={`film/${id}`} className='card-film__more'>
                         Подробнее
-                    </a>
+                    </Link>
                 </footer>
             </div>
         </article>
