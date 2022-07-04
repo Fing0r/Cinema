@@ -1,0 +1,30 @@
+.search {
+  padding: 30px 0;
+
+
+  &__wrapper {
+    display: grid;
+    gap: 20px;
+  }
+
+
+  &__btn {
+    background-color: var(--color-dark);
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: var(--color-dark-hover);
+    }
+  }
+
+  &__fieldset {
+    width: fit-content;
+    display: grid;
+    gap: 10px;
+
+    label {
+      display: flex;
+      gap: 10px;
+    }
+  }
+}

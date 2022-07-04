@@ -1,0 +1,1 @@
+export { CatalogCinema } from "./catalog";

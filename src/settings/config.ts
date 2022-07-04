@@ -38,3 +38,19 @@ export const sortOptionsData = [
     { value: SORT.RATING_DOWN, title: "Рейтинг по убыванию" },
     { value: SORT.RATING_UP, title: "Рейтинг по возрастанию" },
 ];
+
+export const ratingRadioBtnData = [
+    { label: "Низкая", value: "low" },
+    { label: "Высокая", value: "high" },
+];
+export const popularRadioBtnData = [
+    { label: "Неизвестный", value: "unknown" },
+    { label: "Популярный", value: "poplar" },
+];
+
+export const SEARCH_BLOCK = {
+    FILM: "film",
+    RATING: "rating",
+    POPULAR: "popular",
+    GENRES: "genres",
+};

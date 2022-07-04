@@ -1,0 +1,83 @@
+.film {
+  background-repeat: no-repeat;
+  background-color: rgba(41, 41, 41, 0.7);
+  background-blend-mode: multiply;
+  background-size: cover;
+  background-position: center;
+  @media(orientation: landscape) and (max-width: 900px) {
+    min-height: calc(100vh - 60px);
+    height: auto;
+  }
+
+  &__wrapper {
+    position: relative;
+    display: flex;
+    height: calc(100vh - 60px);
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px 50px;
+    padding: 30px 0;
+    color: #fff;
+  }
+
+  &__img {
+    max-width: 300px;
+
+    @media(max-width: 460px) {
+      max-width: 250px;
+    }
+  }
+
+  &__info {
+    max-width: 630px;
+    backdrop-filter: blur(5px);
+    background-color: rgba(150, 150, 150, 0.5);
+    padding: 15px;
+    box-shadow: 0 0 40px rgb(150, 150, 150);
+    border-radius: 10px;
+  }
+
+  &__title {
+    font-size: 35px;
+    margin-bottom: 10px;
+    @media(max-width: 768px) {
+      font-size: 25px;
+    }
+  }
+
+  &__rating {
+    font-size: 18px;
+    margin-bottom: 10px;
+    display: block;
+
+    @media(max-width: 768px) {
+      font-size: 14px;
+    }
+  }
+
+  &__descr {
+    font-size: 18px;
+    @media(max-width: 768px) {
+      font-size: 14px;
+    }
+  }
+
+  &__detail {
+    display: flex;
+    gap: 10px;
+  }
+
+  &__genres {
+    margin-bottom: 10px;
+  }
+
+  &__release {
+    display: block;
+    font-size: 18px;
+
+    @media(max-width: 768px) {
+      font-size: 14px;
+    }
+  }
+}

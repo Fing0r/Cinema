@@ -1,0 +1,15 @@
+.nav {
+  &__list {
+    display: flex;
+    gap: 20px;
+  }
+
+  &__link {
+    transition: color var(--transition) ease-in-out;
+    @media (any-hover: hover) {
+      &:hover {
+        color: var(--color-grey);
+      }
+    }
+  }
+}

@@ -1,0 +1,1 @@
+export { CardFilm } from "./card";

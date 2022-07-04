@@ -1,7 +1,6 @@
 import { FiltersActionTypes } from "../actions/filtersActions";
 import { FiltersAction, FiltersState } from "@/types/store";
 import { DEFAULT_FILTERS } from "@/settings/config";
-import { UserChoiceActionsTypes } from "@/store/actions/userChoiceActions";
 import { toggleIdInList } from "@/utils/utils";
 
 const initialState: FiltersState = {

@@ -10,3 +10,7 @@ export interface ICheckbox {
 export interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
     onClick?: () => void;
 }
+
+export interface ICheckboxesByGenres {
+    title?: string;
+}
