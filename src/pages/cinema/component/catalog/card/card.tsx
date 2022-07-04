@@ -8,8 +8,8 @@ import { toggleFavoriteFilm, toggleLaterFilm } from "@/store/actions/userChoiceA
 import { ReactComponent as SaveIcon } from "@/assets/save.svg";
 import { ReactComponent as StarIcon } from "@/assets/star.svg";
 import { selectAuth } from "@/store/selectors";
-import { updateUserChoicesFilms } from "./utils";
 import { ICardFilm } from "@/types/films";
+import { updateUserChoicesFilms } from "./utils";
 
 const CardFilm = memo(({ poster_path: img, vote_average: rating, title, id }: ICardFilm) => {
     const auth = useTypedSelector(selectAuth);
