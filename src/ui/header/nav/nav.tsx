@@ -1,23 +1,28 @@
 import React, { FC } from "react";
 import { NavLink } from "react-router-dom";
-import styles from "./nav.module.scss";
+import { Box, Link } from "@mui/material";
 
 const Nav: FC = () => {
     return (
-        <nav className='nav'>
-            <ul className={styles.nav__list}>
-                <li className='nav__item'>
-                    <NavLink to='/' className={styles.nav__link}>
-                        Home
-                    </NavLink>
-                </li>
-                <li className='nav__item'>
-                    <NavLink to='/search' className={styles.nav__link}>
-                        Search
-                    </NavLink>
-                </li>
-            </ul>
-        </nav>
+        <Box
+            sx={{ flexGrow: 1, display: "flex", alignItems: "center", gap: "20px" }}
+            component='nav'
+        >
+            <Link
+                component={NavLink}
+                to='/'
+                sx={{ textTransform: "unset", color: "white", fontSize: "16px" }}
+            >
+                Каталог
+            </Link>
+            <Link
+                component={NavLink}
+                to='/search'
+                sx={{ textTransform: "unset", color: "white", fontSize: "16px" }}
+            >
+                Поиск
+            </Link>
+        </Box>
     );
 };
 

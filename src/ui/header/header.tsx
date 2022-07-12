@@ -1,5 +1,6 @@
-import React, { FC, memo, useEffect } from "react";
+import React, { memo, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { AppBar, Button, Container, Toolbar } from "@mui/material/";
 import LoginModal from "@/ui/modal";
 import useTypedSelector from "@/hooks/redux";
 import { setAuth } from "@/store/actions/authActions";
@@ -7,9 +8,8 @@ import { setActiveLoginModal } from "@/store/actions/modalActions";
 import { updateDataFromStorage } from "@/utils/utils";
 import { setFilteredByUserChoice } from "@/store/actions/userChoiceActions";
 import { DEFAULT_FILTERS } from "@/settings/config";
-import styles from "./header.module.scss";
-import Nav from "@/ui/header/nav/nav";
 import { selectAuth, selectIsOpenLoginModal } from "@/store/selectors";
+import Nav from "@/ui/header/nav/nav";
 
 const Header = memo(() => {
     const auth = useTypedSelector(selectAuth);
@@ -30,21 +30,22 @@ const Header = memo(() => {
     };
 
     return (
-        <header className={styles.header}>
-            <div className='container'>
-                <div className={styles.header__wrapper}>
+        <AppBar position='static'>
+            <Container maxWidth='lg'>
+                <Toolbar disableGutters>
                     <Nav />
-                    <button
-                        className={`${styles.header__login} btn`}
-                        type='button'
+                    <Button
+                        variant='contained'
+                        color='success'
+                        sx={{ textTransform: "unset", fontSize: "16px" }}
                         onClick={handleClick}
                     >
                         {auth ? "Выйти" : "Войти"}
-                    </button>
-                    <LoginModal active={isOpenLoginModal} handleClick={handleClick} />
-                </div>
-            </div>
-        </header>
+                    </Button>
+                </Toolbar>
+            </Container>
+            <LoginModal active={isOpenLoginModal} handleClick={handleClick} />
+        </AppBar>
     );
 });
 
