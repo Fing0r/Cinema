@@ -1,4 +1,5 @@
-import { FC, useState } from "react";
+import React, { FC, useState } from "react";
+import { Link } from "react-router-dom";
 import styles from "./search.module.scss";
 import { CheckboxesByGenres } from "@/pages/cinema/component/filters/checkboxes-by-genres";
 import useTypedSelector from "@/hooks/redux";
@@ -39,7 +40,7 @@ const SearchFilm: FC = () => {
     };
 
     const filmData = { ...films[numberFilm] };
-    const filmItem = <CardFilm {...filmData} />;
+    const filmItem = <CardFilm className={styles.search__card} {...filmData} />;
 
     return (
         <div className={styles.search}>
@@ -97,13 +98,18 @@ const SearchFilm: FC = () => {
                     )}
                     {showBlock === SEARCH_BLOCK.FILM && (
                         <>
-                            <div>
-                                {!films.length && "Фильмов не найдено"}
-                                {!!films.length && !filmData.id ? "Фильмов больше нет" : filmItem}
-                            </div>
+                            {!films.length && <span>Фильмов не найдено</span>}
+                            {!!films.length && !filmData.id ? <span>Фильмов нет</span> : filmItem}
+                            <Link
+                                to={`/film/${filmData.id}`}
+                                hidden={!filmData.id}
+                                className={`${styles.search__add} btn`}
+                            >
+                                Выбрать фильм
+                            </Link>
                             <button
                                 type='button'
-                                className={`${styles.search__btn} btn`}
+                                className={`${styles.search__next} btn`}
                                 hidden={!filmData.id}
                                 onClick={handleClick}
                             >

@@ -1,4 +1,4 @@
-import { FC, memo } from "react";
+import { memo } from "react";
 import { useDispatch } from "react-redux";
 import Button from "@/ui/button";
 import { PaginationFilms } from "./pagination";

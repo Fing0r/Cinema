@@ -7,6 +7,17 @@
     gap: 20px;
   }
 
+  &__card {
+    grid-column: 2 span;
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+
+    @media(max-width: 767px) {
+      grid-column: 1 span;
+    }
+  }
+
 
   &__btn {
     background-color: var(--color-dark);
@@ -16,6 +27,30 @@
       background-color: var(--color-dark-hover);
     }
   }
+
+
+  &__next,
+  &__add {
+    transition: background-color 0.3s;
+  }
+
+  &__add {
+    background-color: var(--color-green);
+
+    &:hover {
+      background-color: var(--color-green-hover);
+
+    }
+  }
+
+  &__next {
+    background-color: var(--color-blue);
+
+    &:hover {
+      background-color: var(--color-blue-hover);
+    }
+  }
+
 
   &__fieldset {
     width: fit-content;
