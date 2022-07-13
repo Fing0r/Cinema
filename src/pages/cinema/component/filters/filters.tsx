@@ -1,6 +1,6 @@
-import { memo } from "react";
+import React, { memo } from "react";
 import { useDispatch } from "react-redux";
-import Button from "@/ui/button";
+import { Box, Typography, Button } from "@mui/material";
 import { PaginationFilms } from "./pagination";
 import { clearFilters } from "@/store/actions/filtersActions";
 import { SelectBySorted } from "./select-by-sorted";
@@ -14,9 +14,25 @@ const FiltersCinema = memo((props: { filmCount: number }) => {
     const handleClick = () => dispatch(clearFilters());
 
     return (
-        <section className='cinema__filters filters'>
-            <h2 className='filters__title'>Фильтры</h2>
-            <Button className='filters__reset' type='button' onClick={handleClick}>
+        <Box
+            component='section'
+            maxWidth='15.625rem'
+            borderRadius='5px'
+            boxShadow='0 10px 40px rgb(0 0 0 / 30%)'
+            p='1.25rem'
+            height='fit-content'
+        >
+            <Typography variant='h5' component='h2' fontWeight={700} mb='1rem'>
+                Фильтры
+            </Typography>
+            <Button
+                onClick={handleClick}
+                variant='contained'
+                color='secondary'
+                size='small'
+                fullWidth
+                sx={{ textTransform: "unset", marginBottom: "0.75rem", fontSize: "1rem" }}
+            >
                 Сбросить все фильтры
             </Button>
             <SelectByUserChoice />
@@ -24,7 +40,7 @@ const FiltersCinema = memo((props: { filmCount: number }) => {
             <SelectByYear />
             <CheckboxesByGenres />
             <PaginationFilms {...props} />
-        </section>
+        </Box>
     );
 });
 

@@ -28,11 +28,13 @@ const SelectByYear = memo(() => {
         <>
             <InputLabel id='year'>Год релиза</InputLabel>
             <Select
-                className='filters__release'
+                fullWidth
+                size='small'
                 labelId='year'
                 id='year'
                 onChange={handleSelectYear}
                 value={String(year)}
+                sx={{ marginBottom: "0.75rem" }}
             >
                 {optionItems}
             </Select>

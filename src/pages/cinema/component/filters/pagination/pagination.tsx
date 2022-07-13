@@ -1,9 +1,9 @@
-import { FC, memo } from "react";
+import { memo } from "react";
 import { useDispatch } from "react-redux";
 import Button from "@/ui/button";
 import useTypedSelector from "@/hooks/redux";
 import { setCurrentPage } from "@/store/actions/filtersActions";
-import { selectFilteredFilms, selectPage } from "@/store/selectors";
+import { selectPage } from "@/store/selectors";
 
 const PaginationFilms = memo(({ filmCount }: { filmCount: number }) => {
     const page = useTypedSelector(selectPage);
@@ -40,11 +40,3 @@ const PaginationFilms = memo(({ filmCount }: { filmCount: number }) => {
 });
 
 export { PaginationFilms };
-
-// const filteredFilms = useTypedSelector(selectFilteredFilms);
-// const activeUserChoice = useTypedSelector((state) => state.userChoice.userChoice);
-
-// const filteredFilms = useTypedSelector(
-//     activeUserChoice === DEFAULT_FILTERS.USER_CHOICE ? filteredFilmss : selectFilteredFilms,
-// );
-// const totalPage = Math.ceil(filteredFilms.length / 10);

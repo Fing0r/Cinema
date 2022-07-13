@@ -27,11 +27,13 @@ const SelectBySorted = memo(() => {
         <>
             <InputLabel id='year'>Сортировать по</InputLabel>
             <Select
-                className='filters__sort'
+                fullWidth
+                size='small'
                 labelId='sort'
                 id='sort'
                 onChange={handleSelectSort}
                 value={String(sort)}
+                sx={{ marginBottom: "0.75rem" }}
             >
                 {optionItems}
             </Select>

@@ -1,4 +1,5 @@
-import { FC, memo } from "react";
+import { memo } from "react";
+import { Box, Grid, List, ListItem } from "@mui/material";
 import { CardFilm } from "./card";
 import useTypedSelector from "@/hooks/redux";
 import { getPositionItems } from "@/utils/utils";
@@ -11,18 +12,24 @@ const CatalogCinema = memo(({ filteredFilms }: { filteredFilms: IFilm[] }) => {
     if (!filteredFilms.length) return null;
 
     const filmItems = filteredFilms.slice(...getPositionItems(page)).map((item) => (
-        <li className='catalog__item' key={item.id}>
+        <ListItem disablePadding key={item.id}>
             <CardFilm {...item} />
-        </li>
+        </ListItem>
     ));
 
     return (
-        <section className='cinema__catalog catalog'>
-            <ul className='catalog__list'>
+        <Box flex='1 1 100%' component='section'>
+            <Grid
+                component={List}
+                gridTemplateColumns='repeat(auto-fit, minmax(21.875rem, 1fr))'
+                gap='1.5625rem'
+                display='grid'
+                p={0}
+            >
                 {filmItems}
                 {filteredFilms.length === 1 && <li />}
-            </ul>
-        </section>
+            </Grid>
+        </Box>
     );
 });
 

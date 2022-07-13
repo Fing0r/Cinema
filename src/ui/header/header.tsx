@@ -37,7 +37,7 @@ const Header = memo(() => {
                     <Button
                         variant='contained'
                         color='success'
-                        sx={{ textTransform: "unset", fontSize: "16px" }}
+                        sx={{ textTransform: "unset" }}
                         onClick={handleClick}
                     >
                         {auth ? "Выйти" : "Войти"}

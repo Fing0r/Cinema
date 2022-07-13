@@ -1,15 +1,24 @@
 import React, { memo, useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import styles from "./card.module.scss";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
+import { NavLink } from "react-router-dom";
+import {
+    Card,
+    CardMedia,
+    CardContent,
+    Typography,
+    CardActions,
+    IconButton,
+    Link,
+} from "@mui/material";
 import useTypedSelector from "@/hooks/redux";
 import { setActiveLoginModal } from "@/store/actions/modalActions";
 import { toggleFavoriteFilm, toggleLaterFilm } from "@/store/actions/userChoiceActions";
-import { ReactComponent as SaveIcon } from "@/assets/save.svg";
-import { ReactComponent as StarIcon } from "@/assets/star.svg";
 import { selectAuth } from "@/store/selectors";
 import { updateUserChoicesFilms } from "./utils";
 import { ICardFilm } from "@/types/films";
+import { cardContentStyle, cardStyle, cardLinkStyle } from "./styles";
 
 const CardFilm = memo(
     ({ className, poster_path: img, vote_average: rating, title, id }: ICardFilm) => {
@@ -39,38 +48,70 @@ const CardFilm = memo(
         }, [auth, dispatch, id, isFilmInFavorite]);
 
         return (
-            <article className={`${styles.card} ${className}`}>
-                <Link to={`film/${id}`} className={styles.card__img}>
-                    <img src={`https://image.tmdb.org/t/p/w300/${img}`} alt='' />
-                </Link>
-                <div className={styles.card__info}>
-                    <div className={styles.card__actions}>
-                        <span className={styles.card__rating}>
-                            Рейтинг: <span>{rating}</span>
-                        </span>
-                        <button
-                            className={styles.card__favorites}
-                            type='button'
+            <Card className={`${className}`} sx={cardStyle}>
+                <CardMedia
+                    component='img'
+                    image={`https://image.tmdb.org/t/p/w300/${img}`}
+                    alt=''
+                    sx={{ width: "11.25rem" }}
+                />
+                <CardContent sx={cardContentStyle}>
+                    <CardActions
+                        sx={{
+                            p: "0.8125rem",
+                            display: "flex",
+                            alignItems: "center",
+                        }}
+                    >
+                        <Typography variant='caption' width='100%' fontSize='1rem'>
+                            Рейтинг: {rating}
+                        </Typography>
+                        <IconButton
+                            color='default'
                             onClick={handleToggleFavoriteFilm}
+                            sx={{
+                                position: "relative",
+                                zIndex: 1,
+                            }}
                         >
-                            <StarIcon width='20px' height='20px' />
-                        </button>
-                        <button
-                            className={styles.card__later}
-                            type='button'
+                            <StarBorderIcon />
+                        </IconButton>
+                        <IconButton
+                            color='default'
                             onClick={handleToggleLaterFilm}
+                            sx={{
+                                position: "relative",
+                                zIndex: 1,
+                            }}
                         >
-                            <SaveIcon width='20px' height='20px' />
-                        </button>
-                    </div>
-                    <h3 className={styles.card__title}>{title}</h3>
-                    <footer>
-                        <Link to={`/film/${id}`} className={styles.card__more}>
-                            Подробнее
-                        </Link>
-                    </footer>
-                </div>
-            </article>
+                            <BookmarkBorderIcon />
+                        </IconButton>
+                    </CardActions>
+                    <Typography
+                        component='h3'
+                        variant='h6'
+                        p='0.8125rem'
+                        flexBasis='100%'
+                        fontSize='1.125rem'
+                        fontWeight='700'
+                        borderBottom='2px solid #c5c5c5'
+                    >
+                        {title}
+                    </Typography>
+
+                    <Link
+                        p='1.25rem'
+                        display='block'
+                        width='100%'
+                        color='inherit'
+                        component={NavLink}
+                        to={`/film/${id}`}
+                        sx={cardLinkStyle}
+                    >
+                        Подробнее
+                    </Link>
+                </CardContent>
+            </Card>
         );
     },
 );

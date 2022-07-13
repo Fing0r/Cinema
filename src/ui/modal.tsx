@@ -26,7 +26,6 @@ const style = {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 400,
     bgcolor: "background.paper",
     boxShadow: 24,
     p: 4,
@@ -67,21 +66,17 @@ const LoginModal: FC<ILoginModal> = ({ active, handleClick }) => {
                 component='form'
                 onSubmit={handleSubmit}
             >
-                <Typography
-                    variant='h2'
-                    component='h2'
-                    sx={{ mb: "1rem", fontSize: "2rem", fontWeight: 700 }}
-                >
+                <Typography variant='h4' component='h2' fontWeight={700}>
                     Авторизация
                 </Typography>
                 <TextField
+                    margin='dense'
                     id='outlined-login'
                     label='Логин'
                     value={login}
                     onChange={setLogin}
-                    sx={{ mb: "1rem", width: "100%" }}
                 />
-                <FormControl sx={{ width: "100%", mb: "1rem" }} variant='outlined'>
+                <FormControl variant='outlined' margin='dense'>
                     <InputLabel htmlFor='outlined-adornment-password'>Пароль</InputLabel>
                     <OutlinedInput
                         id='outlined-adornment-password'
@@ -107,7 +102,8 @@ const LoginModal: FC<ILoginModal> = ({ active, handleClick }) => {
                     variant='contained'
                     color='success'
                     type='submit'
-                    sx={{ textTransform: "unset", fontSize: "1.5rem", width: "100%" }}
+                    size='large'
+                    sx={{ textTransform: "unset", marginTop: "0.5rem" }}
                 >
                     Авторизоваться
                 </Button>
