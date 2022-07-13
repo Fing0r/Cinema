@@ -2,6 +2,7 @@ import { AuthActionTypes } from "@/store/actions/authActions";
 import { AuthAction, AuthState } from "@/types/store";
 import { getDataFromStorage } from "@/utils/utils";
 
+// @ts-ignore
 const checkAuth = getDataFromStorage("Login", false);
 
 const initialState: AuthState = {

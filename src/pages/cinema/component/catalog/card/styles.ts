@@ -5,6 +5,7 @@ export const cardStyle = {
     boxShadow: "0 10px 40px rgb(0 0 0 / 30%)",
     overflow: "hidden",
     fontSize: "1rem",
+    minHeight: "16.875rem",
 };
 
 export const cardContentStyle = {
