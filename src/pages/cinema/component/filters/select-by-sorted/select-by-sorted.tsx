@@ -3,18 +3,18 @@ import InputLabel from "@mui/material/InputLabel";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { memo } from "react";
-import useTypedSelector from "@/hooks/redux";
-import { setSorted } from "@/store/actions/filtersActions";
-import { sortOptionsData } from "@/settings/config";
+import useTypedSelector from "@/shared/hooks/redux";
+import { sortOptionsData } from "@/shared/settings/config";
 import { selectSort } from "@/store/selectors";
+import { useActions } from "@/shared/hooks/useActions";
 
 const SelectBySorted = memo(() => {
     const sort = useTypedSelector(selectSort);
-    const dispatch = useDispatch();
+    const { setSorted } = useActions();
 
     const handleSelectSort = (e: SelectChangeEvent) => {
         const { value } = e.target;
-        dispatch(setSorted(value));
+        setSorted(value);
     };
 
     const optionItems = sortOptionsData.map(({ title, value }) => (

@@ -1,18 +1,17 @@
 import { FC } from "react";
-import { useDispatch } from "react-redux";
 import { Checkbox as Check, FormControlLabel } from "@mui/material";
-import { ICheckbox } from "@/types/UI";
-import { setCurrentPage, toggleGenre } from "@/store/actions/filtersActions";
-import useTypedSelector from "@/hooks/redux";
-import { DEFAULT_FILTERS } from "@/settings/config";
+import { ICheckbox } from "@/types/ui";
+import useTypedSelector from "@/shared/hooks/redux";
+import { DEFAULT_FILTERS } from "@/shared/settings/config";
+import { useActions } from "@/shared/hooks/useActions";
 
 const Checkbox: FC<ICheckbox> = ({ name, id }) => {
     const isChecked = useTypedSelector(({ filters }) => filters.selectedGenres.includes(id));
-    const dispatch = useDispatch();
+    const { toggleGenre, setCurrentPage } = useActions();
 
     const onChange = () => {
-        dispatch(toggleGenre(id));
-        dispatch(setCurrentPage(DEFAULT_FILTERS.PAGE));
+        toggleGenre(id);
+        setCurrentPage(DEFAULT_FILTERS.PAGE);
     };
 
     return (
@@ -25,15 +24,3 @@ const Checkbox: FC<ICheckbox> = ({ name, id }) => {
 };
 
 export { Checkbox };
-
-// <label className='checkbox'>
-// {/*    <input*/}
-// {/*        className='checkbox__field'*/}
-// {/*        type='checkbox'*/}
-// {/*        checked={isChecked}*/}
-// {/*        onChange={onChange}*/}
-// {/*    />*/}
-// {/*    <span className='checkbox__content' />*/}
-// {/*    {name && <span className='checkbox__text'>{name}</span>}*/}
-// {/*    {children}*/}
-// {/*</label>*/}

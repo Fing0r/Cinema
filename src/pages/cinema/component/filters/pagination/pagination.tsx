@@ -1,17 +1,19 @@
 import { memo } from "react";
-import { useDispatch } from "react-redux";
-import Button from "@/ui/button";
-import useTypedSelector from "@/hooks/redux";
-import { setCurrentPage } from "@/store/actions/filtersActions";
+import Button from "@/shared/ui/button";
+import useTypedSelector from "@/shared/hooks/redux";
 import { selectPage } from "@/store/selectors";
+import { useActions } from "@/shared/hooks/useActions";
 
 const PaginationFilms = memo(({ filmCount }: { filmCount: number }) => {
     const page = useTypedSelector(selectPage);
-    const dispatch = useDispatch();
+    const { setCurrentPage } = useActions();
 
-    const changePage = (newPage: number) => dispatch(setCurrentPage(newPage));
+    const changePage = (newPage: number) => setCurrentPage(newPage);
 
     const totalPage = Math.ceil(filmCount / 10);
+    const currentPage = totalPage ? page : 0;
+    const isDisabledPrev = page < 2;
+    const isDisabledNext = totalPage < 2 || totalPage === page;
 
     return (
         <div className='filters__pagination pagination'>
@@ -19,7 +21,7 @@ const PaginationFilms = memo(({ filmCount }: { filmCount: number }) => {
                 onClick={() => changePage(page - 1)}
                 className='pagination__btn pagination__btn--prev'
                 type='button'
-                disabled={page < 2}
+                disabled={isDisabledPrev}
             >
                 Назад
             </Button>
@@ -27,12 +29,12 @@ const PaginationFilms = memo(({ filmCount }: { filmCount: number }) => {
                 onClick={() => changePage(page + 1)}
                 className='pagination__btn pagination__btn--next btn'
                 type='button'
-                disabled={totalPage < 2 || totalPage === page}
+                disabled={isDisabledNext}
             >
                 Вперед
             </Button>
             <div className='pagination__pages'>
-                <span className='pagination__curr'>{totalPage ? page : 0}</span> of{" "}
+                <span className='pagination__curr'>{currentPage}</span> of{" "}
                 <span className='pagination__total'>{totalPage}</span>
             </div>
         </div>

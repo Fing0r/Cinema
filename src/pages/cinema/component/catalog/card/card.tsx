@@ -1,52 +1,13 @@
-import React, { memo, useCallback } from "react";
-import { useDispatch } from "react-redux";
-import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
+import { memo } from "react";
 import { NavLink } from "react-router-dom";
-import {
-    Card,
-    CardMedia,
-    CardContent,
-    Typography,
-    CardActions,
-    IconButton,
-    Link,
-} from "@mui/material";
-import useTypedSelector from "@/hooks/redux";
-import { setActiveLoginModal } from "@/store/actions/modalActions";
-import { toggleFavoriteFilm, toggleLaterFilm } from "@/store/actions/userChoiceActions";
-import { selectAuth } from "@/store/selectors";
-import { updateUserChoicesFilms } from "./utils";
+import { Card, CardActions, CardContent, CardMedia, Link, Typography } from "@mui/material";
 import { ICardFilm } from "@/types/films";
-import { cardContentStyle, cardStyle, cardLinkStyle } from "./styles";
+import { cardContentStyle, cardLinkStyle, cardStyle } from "./styles";
+import { FavoriteButton } from "@/pages/cinema/component/catalog/card/favorite-button";
+import { LaterButton } from "@/pages/cinema/component/catalog/card/later-button";
 
 const CardFilm = memo(
     ({ className, poster_path: img, vote_average: rating, title, id }: ICardFilm) => {
-        const auth = useTypedSelector(selectAuth);
-        const isFilmInFavorite = useTypedSelector(({ userChoice }) =>
-            userChoice.favoritesFilms.includes(id),
-        );
-        const isFilmInLater = useTypedSelector(({ userChoice }) =>
-            userChoice.laterFilms.includes(id),
-        );
-        const dispatch = useDispatch();
-
-        const handleToggleLaterFilm = useCallback(() => {
-            if (!auth) {
-                dispatch(setActiveLoginModal());
-            }
-            dispatch(toggleLaterFilm(id));
-            updateUserChoicesFilms(id, "LaterFilms", isFilmInLater);
-        }, [auth, dispatch, id, isFilmInLater]);
-
-        const handleToggleFavoriteFilm = useCallback(() => {
-            if (!auth) {
-                dispatch(setActiveLoginModal());
-            }
-            dispatch(toggleFavoriteFilm(id));
-            updateUserChoicesFilms(id, "FavoriteFilms", isFilmInFavorite);
-        }, [auth, dispatch, id, isFilmInFavorite]);
-
         return (
             <Card className={`${className}`} sx={cardStyle}>
                 <CardMedia
@@ -61,31 +22,14 @@ const CardFilm = memo(
                             p: "0.8125rem",
                             display: "flex",
                             alignItems: "center",
+                            zIndex: 3,
                         }}
                     >
                         <Typography variant='caption' width='100%' fontSize='1rem'>
                             Рейтинг: {rating}
                         </Typography>
-                        <IconButton
-                            color='default'
-                            onClick={handleToggleFavoriteFilm}
-                            sx={{
-                                position: "relative",
-                                zIndex: 1,
-                            }}
-                        >
-                            <StarBorderIcon />
-                        </IconButton>
-                        <IconButton
-                            color='default'
-                            onClick={handleToggleLaterFilm}
-                            sx={{
-                                position: "relative",
-                                zIndex: 1,
-                            }}
-                        >
-                            <BookmarkBorderIcon />
-                        </IconButton>
+                        <FavoriteButton id={id} />
+                        <LaterButton id={id} />
                     </CardActions>
                     <Typography
                         component='h3'

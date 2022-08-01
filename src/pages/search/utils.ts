@@ -1,5 +1,5 @@
-import { filterByGenres, filterByPopularity, filterByRating } from "@/utils/filters";
-import FilmsData from "@/api/filmsData";
+import { filterByGenres, filterByPopularity, filterByRating } from "@/shared/utils/filters";
+import FilmsData from "@/shared/api/filmsData";
 
 export const getFilterFilm = (
     genres: number[],

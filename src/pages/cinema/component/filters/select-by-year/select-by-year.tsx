@@ -1,21 +1,20 @@
-import { useDispatch } from "react-redux";
 import InputLabel from "@mui/material/InputLabel";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { memo } from "react";
-import useTypedSelector from "@/hooks/redux";
-import { setCurrentPage, setFilteredByYear } from "@/store/actions/filtersActions";
-import { DEFAULT_FILTERS, yearOptionsData } from "@/settings/config";
+import useTypedSelector from "@/shared/hooks/redux";
+import { DEFAULT_FILTERS, yearOptionsData } from "@/shared/settings/config";
 import { selectYear } from "@/store/selectors";
+import { useActions } from "@/shared/hooks/useActions";
 
 const SelectByYear = memo(() => {
     const year = useTypedSelector(selectYear);
-    const dispatch = useDispatch();
+    const { setFilteredByYear, setCurrentPage } = useActions();
 
     const handleSelectYear = (e: SelectChangeEvent) => {
-        const { value } = e.target;
-        dispatch(setFilteredByYear(value));
-        dispatch(setCurrentPage(DEFAULT_FILTERS.PAGE));
+        const value = parseInt(e.target.value, 10);
+        setFilteredByYear(value);
+        setCurrentPage(DEFAULT_FILTERS.PAGE);
     };
 
     const optionItems = yearOptionsData.map(({ title, value }) => (

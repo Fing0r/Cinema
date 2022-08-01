@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import { Cinema } from "@/pages/cinema";
 import { SearchFilm } from "@/pages/search";
 import { DetailFilm } from "@/pages/detail-film";
-import Layout from "@/ui/layout";
+import Layout from "@/shared/ui/layout";
 
 const App: FC = () => (
     <Routes>

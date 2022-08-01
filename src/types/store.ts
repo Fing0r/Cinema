@@ -2,18 +2,26 @@ import { FiltersActionTypes } from "@/store/actions/filtersActions";
 import { AuthActionTypes } from "@/store/actions/authActions";
 import { ModalActionTypes } from "@/store/actions/modalActions";
 import { UserChoiceActionsTypes } from "@/store/actions/userChoiceActions";
+import { SearchParamsEnum } from "@/shared/settings/config";
 
 export interface IRootState {
     filters: FiltersState;
     auth: AuthState;
     modal: ModalState;
     userChoice: UserChoiceState;
+    search: SearchState;
 }
 
 export interface UserChoiceState {
     userChoice: string;
     favoritesFilms: number[];
     laterFilms: number[];
+}
+
+export interface SearchState {
+    rating: string | null;
+    popular: string | null;
+    genres: number[];
 }
 
 export interface FiltersState {

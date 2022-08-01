@@ -1,17 +1,20 @@
 import React, { memo } from "react";
-import { useDispatch } from "react-redux";
 import { Box, Typography, Button } from "@mui/material";
 import { PaginationFilms } from "./pagination";
-import { clearFilters } from "@/store/actions/filtersActions";
 import { SelectBySorted } from "./select-by-sorted";
 import { SelectByYear } from "./select-by-year";
 import { CheckboxesByGenres } from "./checkboxes-by-genres";
 import { SelectByUserChoice } from "./select-by-user-choice";
+import { useActions } from "@/shared/hooks/useActions";
+import { UserChoiceEnum } from "@/shared/settings/config";
 
 const FiltersCinema = memo((props: { filmCount: number }) => {
-    const dispatch = useDispatch();
+    const { clearFilters, setFilteredByUserChoice } = useActions();
 
-    const handleClick = () => dispatch(clearFilters());
+    const handleClick = () => {
+        clearFilters();
+        setFilteredByUserChoice(UserChoiceEnum.DEFAULT);
+    };
 
     return (
         <Box

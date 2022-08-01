@@ -1,9 +1,9 @@
 import { FC, memo } from "react";
 import "./cinema.scss";
-import { Container, Box } from "@mui/material/";
+import { Box, Container } from "@mui/material/";
 import { FiltersCinema } from "./component/filters";
 import { CatalogCinema } from "./component/catalog";
-import useTypedSelector from "@/hooks/redux";
+import useTypedSelector from "@/shared/hooks/redux";
 import { selectFilteredFilms } from "@/store/selectors";
 
 const Cinema: FC = memo(() => {
