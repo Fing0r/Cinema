@@ -1,22 +1,23 @@
 import { FC, memo } from "react";
 import "./cinema.scss";
+import { Box, Container } from "@mui/material/";
 import { FiltersCinema } from "./component/filters";
 import { CatalogCinema } from "./component/catalog";
-import useTypedSelector from "@/hooks/redux";
+import useTypedSelector from "@/shared/hooks/redux";
 import { selectFilteredFilms } from "@/store/selectors";
 
 const Cinema: FC = memo(() => {
     const filteredFilms = useTypedSelector(selectFilteredFilms);
 
     return (
-        <div className='cinema' style={{ position: "relative" }}>
-            <div className='container'>
-                <div className='cinema__wrapper'>
+        <Box p='1.875rem 0' position='relative'>
+            <Container maxWidth='lg'>
+                <Box display='flex' gap='1.875rem'>
                     <FiltersCinema filmCount={filteredFilms.length} />
                     <CatalogCinema filteredFilms={filteredFilms} />
-                </div>
-            </div>
-        </div>
+                </Box>
+            </Container>
+        </Box>
     );
 });
 

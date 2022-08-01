@@ -16,7 +16,9 @@
   "dependencies": {
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
+    "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.8.5",
+    "@reduxjs/toolkit": "^1.8.3",
     "axios": "^0.27.2",
     "classnames": "^2.3.1",
     "gh-pages": "^4.0.0",
@@ -27,6 +29,7 @@
     "react-router-dom": "^6.3.0",
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
+    "redux-persist": "^6.0.0",
     "reselect": "^4.1.6",
     "sass": "^1.52.3",
     "typed-scss-modules": "^6.5.0",

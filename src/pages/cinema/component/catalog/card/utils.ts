@@ -1,4 +1,4 @@
-import { getDataFromStorage, updateDataFromStorage } from "@/utils/utils";
+import { getDataFromStorage, updateDataFromStorage } from "@/shared/utils/utils";
 
 export const updateUserChoicesFilms = (id: number, storage: string, isFilmInList: boolean) => {
     const laterFilmsInStorage: number[] = getDataFromStorage(storage);

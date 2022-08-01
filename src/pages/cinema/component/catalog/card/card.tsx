@@ -1,76 +1,61 @@
-import React, { memo, useCallback } from "react";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import styles from "./card.module.scss";
-import useTypedSelector from "@/hooks/redux";
-import { setActiveLoginModal } from "@/store/actions/modalActions";
-import { toggleFavoriteFilm, toggleLaterFilm } from "@/store/actions/userChoiceActions";
-import { ReactComponent as SaveIcon } from "@/assets/save.svg";
-import { ReactComponent as StarIcon } from "@/assets/star.svg";
-import { selectAuth } from "@/store/selectors";
-import { updateUserChoicesFilms } from "./utils";
+import { memo } from "react";
+import { NavLink } from "react-router-dom";
+import { Card, CardActions, CardContent, CardMedia, Link, Typography } from "@mui/material";
 import { ICardFilm } from "@/types/films";
+import { cardContentStyle, cardLinkStyle, cardStyle } from "./styles";
+import { FavoriteButton } from "@/pages/cinema/component/catalog/card/favorite-button";
+import { LaterButton } from "@/pages/cinema/component/catalog/card/later-button";
 
 const CardFilm = memo(
     ({ className, poster_path: img, vote_average: rating, title, id }: ICardFilm) => {
-        const auth = useTypedSelector(selectAuth);
-        const isFilmInFavorite = useTypedSelector(({ userChoice }) =>
-            userChoice.favoritesFilms.includes(id),
-        );
-        const isFilmInLater = useTypedSelector(({ userChoice }) =>
-            userChoice.laterFilms.includes(id),
-        );
-        const dispatch = useDispatch();
-
-        const handleToggleLaterFilm = useCallback(() => {
-            if (!auth) {
-                dispatch(setActiveLoginModal());
-            }
-            dispatch(toggleLaterFilm(id));
-            updateUserChoicesFilms(id, "LaterFilms", isFilmInLater);
-        }, [auth, dispatch, id, isFilmInLater]);
-
-        const handleToggleFavoriteFilm = useCallback(() => {
-            if (!auth) {
-                dispatch(setActiveLoginModal());
-            }
-            dispatch(toggleFavoriteFilm(id));
-            updateUserChoicesFilms(id, "FavoriteFilms", isFilmInFavorite);
-        }, [auth, dispatch, id, isFilmInFavorite]);
-
         return (
-            <article className={`${styles.card} ${className}`}>
-                <Link to={`film/${id}`} className={styles.card__img}>
-                    <img src={`https://image.tmdb.org/t/p/w300/${img}`} alt='' />
-                </Link>
-                <div className={styles.card__info}>
-                    <div className={styles.card__actions}>
-                        <span className={styles.card__rating}>
-                            Рейтинг: <span>{rating}</span>
-                        </span>
-                        <button
-                            className={styles.card__favorites}
-                            type='button'
-                            onClick={handleToggleFavoriteFilm}
-                        >
-                            <StarIcon width='20px' height='20px' />
-                        </button>
-                        <button
-                            className={styles.card__later}
-                            type='button'
-                            onClick={handleToggleLaterFilm}
-                        >
-                            <SaveIcon width='20px' height='20px' />
-                        </button>
-                    </div>
-                    <h3 className={styles.card__title}>{title}</h3>
-                    <footer>
-                        <Link to={`/film/${id}`} className={styles.card__more}>
-                            Подробнее
-                        </Link>
-                    </footer>
-                </div>
-            </article>
+            <Card className={`${className}`} sx={cardStyle}>
+                <CardMedia
+                    component='img'
+                    image={`https://image.tmdb.org/t/p/w300/${img}`}
+                    alt=''
+                    sx={{ width: "11.25rem" }}
+                />
+                <CardContent sx={cardContentStyle}>
+                    <CardActions
+                        sx={{
+                            p: "0.8125rem",
+                            display: "flex",
+                            alignItems: "center",
+                            zIndex: 3,
+                        }}
+                    >
+                        <Typography variant='caption' width='100%' fontSize='1rem'>
+                            Рейтинг: {rating}
+                        </Typography>
+                        <FavoriteButton id={id} />
+                        <LaterButton id={id} />
+                    </CardActions>
+                    <Typography
+                        component='h3'
+                        variant='h6'
+                        p='0.8125rem'
+                        flexBasis='100%'
+                        fontSize='1.125rem'
+                        fontWeight='700'
+                        borderBottom='2px solid #c5c5c5'
+                    >
+                        {title}
+                    </Typography>
+
+                    <Link
+                        p='1.25rem'
+                        display='block'
+                        width='100%'
+                        color='inherit'
+                        component={NavLink}
+                        to={`/film/${id}`}
+                        sx={cardLinkStyle}
+                    >
+                        Подробнее
+                    </Link>
+                </CardContent>
+            </Card>
         );
     },
 );

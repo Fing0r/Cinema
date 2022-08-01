@@ -1,7 +1,17 @@
-import { createStore } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension";
+import { configureStore } from "@reduxjs/toolkit";
+import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE } from "redux-persist";
 import filmsApp from "@/store/reducers/reducers";
 
-const store = createStore(filmsApp, composeWithDevTools());
+export default function setupStore() {
+    return configureStore({
+        reducer: filmsApp,
+        middleware: (getDefaultMiddleware) =>
+            getDefaultMiddleware({
+                serializableCheck: {
+                    ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+                },
+            }),
+    });
+}
 
-export default store;
+export type RootState = ReturnType<typeof filmsApp>;

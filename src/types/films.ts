@@ -16,7 +16,7 @@ export interface ICardFilm {
     vote_average: number;
     poster_path: string;
     id: number;
-    className: string;
+    className?: string;
 }
 
 export type IHandleChangeRadio = (

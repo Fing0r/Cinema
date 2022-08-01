@@ -1,28 +1,29 @@
-import { FC, memo } from "react";
+import { memo } from "react";
+import { Box, Grid, List, ListItem } from "@mui/material";
 import { CardFilm } from "./card";
-import useTypedSelector from "@/hooks/redux";
-import { getPositionItems } from "@/utils/utils";
-import { selectPage } from "@/store/selectors";
 import { IFilm } from "@/types/films";
+import useCurrentPageFilms from "@/shared/hooks/useCurrentPageFilms";
 
 const CatalogCinema = memo(({ filteredFilms }: { filteredFilms: IFilm[] }) => {
-    const page = useTypedSelector(selectPage);
-
-    if (!filteredFilms.length) return null;
-
-    const filmItems = filteredFilms.slice(...getPositionItems(page)).map((item) => (
-        <li className='catalog__item' key={item.id}>
-            <CardFilm {...item} />
-        </li>
-    ));
+    const currentPageFilms = useCurrentPageFilms(filteredFilms);
 
     return (
-        <section className='cinema__catalog catalog'>
-            <ul className='catalog__list'>
-                {filmItems}
-                {filteredFilms.length === 1 && <li />}
-            </ul>
-        </section>
+        <Box flex='1 1 100%' component='section'>
+            <Grid
+                component={List}
+                gridTemplateColumns='repeat(auto-fit, minmax(21.875rem, 1fr))'
+                gap='1.5625rem'
+                display='grid'
+                p={0}
+            >
+                {currentPageFilms.map((item) => (
+                    <ListItem disablePadding key={item.id}>
+                        <CardFilm {...item} />
+                    </ListItem>
+                ))}
+                {currentPageFilms.length === 1 && <li />}
+            </Grid>
+        </Box>
     );
 });
 
