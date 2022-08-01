@@ -2,15 +2,13 @@ import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 import { FC } from "react";
 import { ICardFilm } from "@/types/films";
 
-interface SearchCardProps {}
+interface SearchCardProps {
+    poster_path?: string;
+    title?: string;
+    overview?: string;
+}
 
-const SearchCard: FC<SearchCardProps> = ({
-    poster_path: img,
-    vote_average: rating,
-    title,
-    id,
-    overview,
-}: ICardFilm) => {
+const SearchCard: FC<SearchCardProps> = ({ poster_path: img, title, overview }) => {
     return (
         <Card
             sx={{

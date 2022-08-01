@@ -1,8 +1,6 @@
 import { FC, memo, useCallback, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { Box, Button } from "@mui/material";
-import styles from "../search.module.scss";
-import { CardFilm } from "@/pages/cinema/component/catalog/card";
 import useSearchFilms from "@/shared/hooks/useSearchFilms";
 import { SearchCard } from "../search-card";
 
